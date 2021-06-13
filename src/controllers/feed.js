@@ -61,52 +61,63 @@ exports.followfeeds = async (req, res) => {
         // id link
         const { id } = req.params
 
-        // menampilkan semua data
-        const userData = await user.findOne({
-            // mengecualikan jika tidak ingin di tampilkan
-            attributes: {
-                exclude: ['createdAt', 'updatedAt', 'password', 'bio', 'email', 'image', 'username', 'fullName', 'id']
-            },
-            where: {
-                id
-            },
-            include: {
-                model: follow,
-                as: 'following',
+        const { idUser } = req
+
+        if (id == idUser) {
+
+            // menampilkan semua data
+            const userData = await user.findOne({
+                // mengecualikan jika tidak ingin di tampilkan
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt', 'password', 'bio', 'email', 'image', 'username', 'fullName', 'id']
+                },
+                where: {
+                    id
+                },
                 include: {
-                    model: user,
+                    model: follow,
                     as: 'following',
                     include: {
-                        model: feed,
-                        as: 'feed',
+                        model: user,
+                        as: 'following',
                         include: {
-                            model: user,
-                            as: 'user',
+                            model: feed,
+                            as: 'feed',
+                            include: {
+                                model: user,
+                                as: 'user',
+                                attributes: {
+                                    exclude: ['createdAt', 'updatedAt', 'bio', 'password', 'email']
+                                }
+                            },
                             attributes: {
-                                exclude: ['createdAt', 'updatedAt', 'bio', 'password', 'email']
+                                exclude: ['createdAt', 'updatedAt']
                             }
                         },
                         attributes: {
-                            exclude: ['createdAt', 'updatedAt']
+                            exclude: ['createdAt', 'updatedAt', 'bio', 'password', 'email', 'fullName', 'image', 'username']
                         }
                     },
                     attributes: {
-                        exclude: ['createdAt', 'updatedAt', 'bio', 'password', 'email', 'fullName', 'image', 'username']
+                        exclude: ['createdAt', 'updatedAt', 'followers', 'followings']
                     }
-                },
-                attributes: {
-                    exclude: ['createdAt', 'updatedAt', 'followers', 'followings']
                 }
-            }
-        })
+            })
 
-        // tampikan ketika berhasil
-        res.send({
-            status: 'success',
-            data: {
-                userData
-            }
-        })
+            // tampikan ketika berhasil
+            res.send({
+                status: 'success',
+                data: {
+                    userData
+                }
+            })
+
+        } else {
+            res.send({
+                status: 'failed',
+                message: 'id not found'
+            })
+        }
 
         // tampilkan ketika server eror
     } catch (error) {

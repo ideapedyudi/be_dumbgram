@@ -52,7 +52,7 @@ const { addFeed, followfeeds, allFeed, likelike, commentidfeed, addComment } = r
 router.post('/feed', auth, addFeed)
 
 // router feed follow
-router.get('/followfeeds/:id', followfeeds)
+router.get('/followfeeds/:id', auth, followfeeds)
 
 // router all feed
 router.get('/allFeed', allFeed)
