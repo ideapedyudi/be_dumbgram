@@ -5,7 +5,7 @@ const { message, user } = require('../../models')
 const { Op } = require('sequelize')
 
 
-// ================================= add chat  =======================================
+// =========================================== add chat  =============================================
 exports.addChat = async (req, res) => {
 
     try {
@@ -70,7 +70,7 @@ exports.addChat = async (req, res) => {
 }
 
 
-// ====================================== meampilkan chat  =======================================
+// =========================================== meampilkan chat  =========================================
 exports.messageWithId = async (req, res) => {
 
     try {
@@ -90,7 +90,7 @@ exports.messageWithId = async (req, res) => {
             })
         }
 
-        // memangil parameter untuk di tamppikan
+        // memanggil parameter untuk di tampilkan
         const messages = await message.findAll({
             where: {
                 [Op.or]: [{
@@ -102,7 +102,7 @@ exports.messageWithId = async (req, res) => {
                     recipient: id
                 }]
             },
-            // iclude user
+            // include user
             include: {
                 model: user,
                 as: 'Sender',

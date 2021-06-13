@@ -10,6 +10,7 @@ exports.addFeed = async (req, res) => {
         // id user
         const { idUser } = req
 
+        // menangkap body
         let { fileName, caption } = req.body
 
         const feedData = await feed.create({
@@ -18,6 +19,7 @@ exports.addFeed = async (req, res) => {
             userFeed: idUser
         })
 
+        // memunculkan feed
         const feeds = await feed.findOne({
             where: {
                 id: feedData.id
@@ -34,13 +36,14 @@ exports.addFeed = async (req, res) => {
             }
         })
 
+        // berhasil
         res.send({
             status: 'success',
             data: {
                 feeds
             }
         })
-
+        // error server
     } catch (error) {
         console.log(error)
         res.status({

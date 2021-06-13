@@ -2,7 +2,7 @@
 const { user, follow } = require('../../models')
 // const follow = require('../../models/follow')
 
-// ================================ meampilkan semua data di database ==================================
+// =================================== meampilkan semua data di database ==================================
 exports.getUsers = async (req, res) => {
     try {
 
@@ -24,7 +24,7 @@ exports.getUsers = async (req, res) => {
             }
         })
 
-        // tampilkan ketika server eror
+        // ketika server erorr
     } catch (error) {
         console.log(error)
         res.status({
@@ -35,7 +35,7 @@ exports.getUsers = async (req, res) => {
 }
 
 
-// ====================================== edit data ==========================================
+// ================================================= edit data ==============================================
 exports.editUser = async (req, res) => {
     try {
 
@@ -93,7 +93,7 @@ exports.editUser = async (req, res) => {
                 message: 'page not found',
             })
         }
-
+        // error server
     } catch (error) {
         console.log(error)
         res.status({
@@ -104,7 +104,7 @@ exports.editUser = async (req, res) => {
 }
 
 
-// =================================== hapus data ====================================
+// =============================================== hapus data ===========================================
 exports.deleteUser = async (req, res) => {
     try {
         // mengambil id
@@ -132,6 +132,8 @@ exports.deleteUser = async (req, res) => {
                 id
             }
         })
+
+        // error server
     } catch (error) {
         console.log(error)
         res.status({
