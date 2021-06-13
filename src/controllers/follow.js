@@ -1,7 +1,7 @@
 // memanggil model tabel database
 const { user, follow } = require('../../models')
 
-// follower
+// ======================================== follower ===============================================
 exports.followers = async (req, res) => {
     try {
         const { id } = req.params
@@ -54,7 +54,7 @@ exports.followers = async (req, res) => {
     }
 }
 
-// following
+// ========================================== following ===========================================
 exports.following = async (req, res) => {
     try {
         const { id } = req.params

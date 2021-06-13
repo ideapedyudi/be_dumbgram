@@ -31,13 +31,6 @@ module.exports = (sequelize, DataTypes) => {
           name: 'userFeed'
         }
       })
-      // hasOne ke database comment
-      user.hasMany(models.feed, {
-        as: 'comment',
-        foreignKey: {
-          name: 'iduser'
-        }
-      })
     }
   };
   user.init({

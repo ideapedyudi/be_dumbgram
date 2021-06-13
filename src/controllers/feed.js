@@ -7,6 +7,7 @@ const joi = require('joi')
 // ============================================= tambah data feed =================================================
 exports.addFeed = async (req, res) => {
     try {
+        // id user
         const { idUser } = req
 
         let { fileName, caption } = req.body
@@ -17,7 +18,10 @@ exports.addFeed = async (req, res) => {
             userFeed: idUser
         })
 
-        const feeds = await feed.findAll({
+        const feeds = await feed.findOne({
+            where: {
+                id: feedData.id
+            },
             attributes: {
                 exclude: ['createdAt', 'updatedAt', 'idUser', 'like', 'userFeed']
             },
@@ -27,7 +31,7 @@ exports.addFeed = async (req, res) => {
                 attributes: {
                     exclude: ['createdAt', 'updatedAt', 'bio', 'password', 'email']
                 }
-            },
+            }
         })
 
         res.send({
@@ -51,6 +55,7 @@ exports.addFeed = async (req, res) => {
 exports.followfeeds = async (req, res) => {
     try {
 
+        // id link
         const { id } = req.params
 
         // menampilkan semua data

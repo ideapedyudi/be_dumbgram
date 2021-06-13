@@ -41,7 +41,10 @@ exports.editUser = async (req, res) => {
 
         // id mana yang ingin kita update
         const { id } = req.params
+
+        // data body
         const { body } = req
+
         // menampilkan id dari token
         const { idUser } = req
 

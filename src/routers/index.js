@@ -68,8 +68,14 @@ router.post('/comment', auth, addComment)
 
 
 
+//=========================================== ROUTER MESSAGE ===============================================
 
+const { addChat, messageWithId } = require('../controllers/message')
+// router message
+router.get('/message-user/:id', auth, messageWithId)
 
+// router add message
+router.post('/message/:id', auth, addChat)
 
 
 
