@@ -44,7 +44,7 @@ exports.registrasi = async (req, res) => {
         })
 
         // mencari emaail ada atau tidak
-        if (checkEmail) {
+        if (!checkEmail) {
             return res.send({
                 status: 'failed',
                 message: "Email and Password don't match"

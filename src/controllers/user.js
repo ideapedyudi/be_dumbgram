@@ -7,7 +7,7 @@ exports.getUsers = async (req, res) => {
     try {
 
         // menampilkan id dari token
-        const { idUser } = req
+        // const { idUser } = req
 
         // menampilkan semua data
         const users = await user.findAll({

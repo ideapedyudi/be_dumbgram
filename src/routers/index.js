@@ -8,50 +8,63 @@ const { auth } = require('../middleware/auth')
 
 
 
-//========================= ROUTER REGISTER DAN LOGIN  =========================
+//================================== ROUTER REGISTER DAN LOGIN  ====================================
 const { registrasi } = require('../controllers/register')
 const { login } = require('../controllers/login')
 
-// register
+// router register
 router.post('/register', registrasi)
 
-// login
+// router login
 router.post('/login', login)
 
 
 
-
-
-
-
-//========================= ROUTER USER =========================
+//============================================ ROUTER USER ==========================================
 const { getUsers, editUser, deleteUser } = require('../controllers/user')
 
-// menampikan data
+// router menampikan data
 router.get('/getuser', getUsers)
 
-// edit data
+// router edit data
 router.patch('/edituser/:id', auth, editUser)
 
-// hapus data
+// router hapus data
 router.delete('/deleteuser/:id', deleteUser)
 
 
 
-
-
-
-//========================= ROUTER FOLLOW =========================
+//============================================== ROUTER FOLLOW =========================================
 const { followers, following } = require('../controllers/follow')
 
-// menampikan data
+// router menampikan followers
 router.get('/followers/:id', followers)
 
-// menampikan data
+// router menampikan following
 router.get('/following/:id', following)
 
 
 
+//=========================================== ROUTER FEED ===============================================
+const { addFeed, followfeeds, allFeed, likelike, commentidfeed, addComment } = require('../controllers/feed')
+
+// router menambahkan feed
+router.post('/feed', auth, addFeed)
+
+// router feed follow
+router.get('/followfeeds/:id', followfeeds)
+
+// router all feed
+router.get('/allFeed', allFeed)
+
+// router like
+router.post('/like', auth, likelike)
+
+// router comment parameneter id feed
+router.get('/comment/:id', commentidfeed)
+
+// router add comment
+router.post('/comment', auth, addComment)
 
 
 
@@ -66,5 +79,5 @@ router.get('/following/:id', following)
 
 
 
-// penututp router
+// penutup router
 module.exports = router

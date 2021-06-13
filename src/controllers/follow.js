@@ -20,7 +20,7 @@ exports.followers = async (req, res) => {
                     model: user,
                     as: 'follower',
                     attributes: {
-                        exclude: ['createdAt', 'updatedAt']
+                        exclude: ['createdAt', 'updatedAt', 'bio', 'password', 'email']
                     }
                 },
                 attributes: {
@@ -73,7 +73,7 @@ exports.following = async (req, res) => {
                     model: user,
                     as: 'following',
                     attributes: {
-                        exclude: ['createdAt', 'updatedAt']
+                        exclude: ['createdAt', 'updatedAt', 'bio', 'password', 'email']
                     }
                 },
                 attributes: {
